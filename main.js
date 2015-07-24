@@ -10,71 +10,38 @@
 
 var addNumbers = function(string){
 	var nums = [];
-	var result = 0 
+	var result = 0;
 
 		for (var i = 0; i < string.length; i++){
 		
-			if ( !isNaN(string[i]) ){
-				nums.push(string[i]);
-			} 
 
-			if ( !isNaN(string[i]) && !isNaN(string[i++]) ){
-				a = string[i] + string[i++]
-				result = result + parseInt(a)
-			} 
-			
+			if ( !isNaN(parseInt(string[i])) && !isNaN(parseInt(string[i++])) ) {
+				a = string[i] + string[i++];
+				// result = result + parseInt(a);
+				nums.push(parseInt(a));
+			}
+			else if ( !isNaN(parseInt(string[i])) && isNaN(parseInt(string[i++])) || isNaN(parseInt(string[i])) && !isNaN(parseInt(string[i++])) )  {
+				nums.push(parseInt(string[--i]));
+			}
+			else if ( !isNaN(parseInt(string[i])) ) {
+				nums.push(parseInt(string[i]))
+			}			
+
+		};
+
+		for(var j = 0; j < nums.length; j++){
+			result = result + nums[j];
 		}
-		console.log(result)
-		console.log(nums)
 
-		// setInterval(function(){
-			
-		// 	for (var j = 0; j <= nums.length; j++){
-		
-		// 		if ( !isNaN(string[j]) && !isNaN(string[j++]) ){
-		// 			a = string[j] + string[j++]
-		// 			result = result + parseInt(a)
-		// 		} 
-		// 			console.log(result)
-		// 	}
+	// this logic works for this string but breaks with string rearrangment --> may come back to later
 
-		// }, 1000);
+		console.log(string);
+		console.log(nums);
+		console.log('result: ', result);
 
-}
+};
 
 addNumbers('88Hello 3World!');
-
-	// if (compareIndecies === true){
-	// 	console.log(compareIndecies, 'both indecies are a number!')
-
-	// }
-		// retu                                                                                                                                                                                                            rn true
-
-	// for (var i = 0; i < string.length; i++){		
-	// 	compareI = ( isNaN( string[i]) === false ) && ( isNaN( string[i++]) === false )
-
-	// 	if ( compareI === true ){
-		
-	// 	temp = string[i] + string[i++]
-
-	// 	console.log(temp);
-
-	// 	nums.push(temp)
-
-	// 	result = result + parseInt(temp)
-	// 	} else if (isNaN(string[i]) === false ) {
-
-	// 		result = result + parseInt(string[i])
-	// 	console.log(string[i]);
-	// 	nums.push(temp)
-
-
-	// 	}
-	// }
-	// console.log('nums: ', nums);
-
-	// console.log('result: ', result);
-	// return result;
 
 
 
@@ -83,6 +50,22 @@ addNumbers('88Hello 3World!');
 // word in the string. If there are two or more words that are the same length, it returns the
 // first word from the string with that length. Ignore punctuation and assume the input
 // sentence will not be empty.
+
+var longestWord = function(string){
+	// var punc = '~`!@#$%^&*()_-+={}|[]<>?,./'.split('');
+	var str = string.split(' ');
+
+	str.map(function(string){
+		var a = string.length().sort();
+
+		console.log(a);
+		console.log(a[0]);
+
+		return a[0]
+	});	
+
+
+longestWord('Ignore punctuation and assume');
 
 
 // BONUS: Write a function averageStringNumbers that takes a single string parameter and searches
